@@ -3,10 +3,12 @@ package com.tw.beach.splitwise.service;
 import com.tw.beach.splitwise.entity.Friend;
 import com.tw.beach.splitwise.repository.FriendRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class FriendService {
     private FriendRepository friendRepository = null;
 

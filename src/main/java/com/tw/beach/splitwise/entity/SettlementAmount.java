@@ -6,7 +6,7 @@ import java.util.Objects;
 
 @Entity
 //This class represents debt amount to be paid to whom
-@Table(name="Settlement_Amount")
+@Table(name = "Settlement_Amount")
 public class SettlementAmount {
     @Id
     @NotNull
@@ -16,15 +16,35 @@ public class SettlementAmount {
 
     @NotNull
     @Column(name = "value")
-    private final Double value;
+    private Double value;
 
     @NotNull
-    @Column(name = "to_be_paid_to")
-    private final Friend toBePaidTo;
+    @OneToOne
+    @JoinColumn(name = "to_be_paid_to")
+    private Friend toBePaidTo;
+
+    public SettlementAmount() {
+    }
 
     SettlementAmount(Double value, Friend toBePaidTo) {
         this.value = value;
         this.toBePaidTo = toBePaidTo;
+    }
+
+    public Long getSettlementId() {
+        return settlementId;
+    }
+
+    public void setSettlementId(Long settlementId) {
+        this.settlementId = settlementId;
+    }
+
+    public Double getValue() {
+        return value;
+    }
+
+    public Friend getToBePaidTo() {
+        return toBePaidTo;
     }
 
     @Override

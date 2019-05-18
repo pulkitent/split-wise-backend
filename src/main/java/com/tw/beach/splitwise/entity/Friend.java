@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name="Friend")
+@Table(name = "Friend")
 public class Friend {
     @Id
     @NotNull
@@ -17,7 +17,7 @@ public class Friend {
 
     @NotNull
     @Column(name = "name")
-    private final String name;
+    private String name;
 
     @NotNull
     @Column(name = "amount_to_pay")
@@ -37,7 +37,11 @@ public class Friend {
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "to_be_paid_by")
-    private final List<SettlementAmount> settlementAmounts;
+    private List<SettlementAmount> settlementAmounts;
+
+    public Friend() {
+
+    }
 
     public Friend(String name, Double amountPaid, Double amountToPay) {
         this.name = name;
@@ -45,6 +49,54 @@ public class Friend {
         this.amountToPay = amountToPay;
         this.settlementAmounts = new LinkedList<>();
         this.bill = new LinkedList<>();
+    }
+
+    public Long getFriendId() {
+        return friendId;
+    }
+
+    public void setFriendId(Long friendId) {
+        this.friendId = friendId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Double getAmountToPay() {
+        return amountToPay;
+    }
+
+    public void setAmountToPay(Double amountToPay) {
+        this.amountToPay = amountToPay;
+    }
+
+    public Double getAmountPaid() {
+        return amountPaid;
+    }
+
+    public void setAmountPaid(Double amountPaid) {
+        this.amountPaid = amountPaid;
+    }
+
+    public List<Bill> getBill() {
+        return bill;
+    }
+
+    public void setBill(List<Bill> bill) {
+        this.bill = bill;
+    }
+
+    public List<SettlementAmount> getSettlementAmounts() {
+        return settlementAmounts;
+    }
+
+    public void setSettlementAmounts(List<SettlementAmount> settlementAmounts) {
+        this.settlementAmounts = settlementAmounts;
     }
 
     public List<SettlementAmount> getSettlementAmount() {

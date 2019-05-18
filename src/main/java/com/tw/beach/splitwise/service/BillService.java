@@ -3,10 +3,12 @@ package com.tw.beach.splitwise.service;
 import com.tw.beach.splitwise.entity.Bill;
 import com.tw.beach.splitwise.repository.BillRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class BillService {
     private BillRepository billRepository = null;
 

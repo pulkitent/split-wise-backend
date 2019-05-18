@@ -35,7 +35,7 @@ public class FriendController {
         return friendService.findAll();
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("friends/{id}")
     public Friend deleteFriendbyId(@PathVariable(value = "id") Long friendId) throws ServiceLayerException {
         return friendService.delete(friendId);
     }

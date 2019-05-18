@@ -35,7 +35,7 @@ public class BillController {
         return billService.findAll();
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("bills/{id}")
     public Bill deleteBillbyId(@PathVariable(value = "id") Long billId) throws ServiceLayerException {
         return billService.delete(billId);
     }
