@@ -1,7 +1,5 @@
 package com.tw.beach.splitwise.entity;
 
-import com.tw.beach.splitwise.Common.BillType;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
@@ -21,7 +19,7 @@ public class Bill {
 
     @NotNull
     @Column(name = "type")
-    private BillType type;
+    private String type;
 
     //    @NotNull
     //    @OneToMany(cascade = CascadeType.ALL)
@@ -35,7 +33,7 @@ public class Bill {
 
     }
 
-    public Bill(Double amount, BillType type, List<Friend> paidFor) {
+    public Bill(Double amount, String type, List<Friend> paidFor) {
         this.amount = amount;
         this.type = type;
         this.paidFor = paidFor;
@@ -57,11 +55,11 @@ public class Bill {
         this.amount = amount;
     }
 
-    public BillType getType() {
+    public String getType() {
         return type;
     }
 
-    public void setType(BillType type) {
+    public void setType(String type) {
         this.type = type;
     }
 
