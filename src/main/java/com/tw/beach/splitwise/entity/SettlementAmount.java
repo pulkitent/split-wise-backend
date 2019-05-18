@@ -1,12 +1,24 @@
 package com.tw.beach.splitwise.entity;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
 @Entity
 //This class represents debt amount to be paid to whom
 public class SettlementAmount {
+    @Id
+    @NotNull
+    @Column(name = "settlement_amount_id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long settlementId;
+
+    @NotNull
+    @Column(name = "value")
     private final Double value;
+
+    @NotNull
+    @Column(name = "to_be_paid_to")
     private final Friend toBePaidTo;
 
     SettlementAmount(Double value, Friend toBePaidTo) {

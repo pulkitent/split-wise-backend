@@ -26,8 +26,16 @@ public class Friend {
     @Column(name = "amount_paid")
     private Double amountPaid;
 
+    @ManyToMany(cascade = {CascadeType.ALL})
+    @JoinTable(
+            name = "Bill_Friend",
+            joinColumns = {@JoinColumn(name = "fiend_id")},
+            inverseJoinColumns = {@JoinColumn(name = "bill_id")}
+    )
+    private List<Bill> bill;
+
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "settlement_amounts_id")
+    @JoinColumn(name = "to_be_paid_by")
     private final List<SettlementAmount> settlementAmounts;
 
     public Friend(String name, Double amountPaid, Double amountToPay) {
@@ -35,6 +43,7 @@ public class Friend {
         this.amountPaid = amountPaid;
         this.amountToPay = amountToPay;
         this.settlementAmounts = new LinkedList<>();
+        this.bill = new LinkedList<>();
     }
 
     public List<SettlementAmount> getSettlementAmount() {
