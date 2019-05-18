@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
+@Table(name="Friend")
 public class Friend {
     @Id
     @NotNull

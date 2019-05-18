@@ -6,6 +6,7 @@ import java.util.Objects;
 
 @Entity
 //This class represents debt amount to be paid to whom
+@Table(name="Settlement_Amount")
 public class SettlementAmount {
     @Id
     @NotNull

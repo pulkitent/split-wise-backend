@@ -7,6 +7,7 @@ import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
+@Table(name="Bill")
 public class Bill {
     @Id
     @NotNull
