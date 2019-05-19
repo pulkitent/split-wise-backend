@@ -23,6 +23,11 @@ public class SettlementAmount {
     @JoinColumn(name = "to_be_paid_to")
     private Friend toBePaidTo;
 
+    @NotNull
+    @OneToOne
+    @JoinColumn(name = "to_be_paid_by")
+    private Friend toBePaidBy;
+
     public SettlementAmount() {
     }
 
@@ -46,9 +51,13 @@ public class SettlementAmount {
     public Friend getToBePaidTo() {
         return toBePaidTo;
     }
+    
+    public Friend getToBePaidBy() {
+        return toBePaidBy;
+    }
 
     @Override
-    public String toString() {
+    publiic String toString() {
         return value + " " + toBePaidTo;
     }
 
