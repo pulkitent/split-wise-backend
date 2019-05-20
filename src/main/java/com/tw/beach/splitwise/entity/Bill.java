@@ -25,6 +25,11 @@ public class Bill {
     //    @OneToMany(cascade = CascadeType.ALL)
     //    @JoinColumn(name = "friend_id")
     @ManyToMany(mappedBy = "bill")
+//    @JoinTable(
+//            name = "Bill_Friend",
+//            joinColumns = {@JoinColumn(name = "bill_id")},
+//            inverseJoinColumns = {@JoinColumn(name = "fiend_id")}
+//    )
     private List<Friend> paidFor;
 
     private final static Double defaultExpenseRatio = 1.0;
