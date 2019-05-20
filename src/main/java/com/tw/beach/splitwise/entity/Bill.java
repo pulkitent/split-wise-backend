@@ -5,7 +5,7 @@ import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
-@Table(name = "Bill")
+@Table(name="bill")
 public class Bill {
     @Id
     @NotNull
@@ -15,77 +15,27 @@ public class Bill {
 
     @NotNull
     @Column(name = "amount")
-    private Double amount;
+    private final Double amount;
+
 
     @NotNull
-    @Column(name = "type")
-    private String type;
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "bill")
+    private final List<PaidFor> paidFor;
+    
+    @NotNull
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "bill")
+    private final List<PaidBy> paidBy;    
 
-    //    @NotNull
-    //    @OneToMany(cascade = CascadeType.ALL)
-    //    @JoinColumn(name = "friend_id")
-    @ManyToMany(mappedBy = "bill")
-//    @JoinTable(
-//            name = "Bill_Friend",
-//            joinColumns = {@JoinColumn(name = "bill_id")},
-//            inverseJoinColumns = {@JoinColumn(name = "fiend_id")}
-//    )
-    private List<Friend> paidFor;
-
-    private final static Double defaultExpenseRatio = 1.0;
-
-    public Bill() {
-
-    }
-
-    public Bill(Double amount, String type, List<Friend> paidFor) {
-        this.amount = amount;
-        this.type = type;
+	public Bill(Double amount, List<PaidFor> paidFor,List<PaidBy> paidBy) {
+        this.amount  = amount;
         this.paidFor = paidFor;
+        this.paidBy  = paidBy;
     }
+	
 
-    public Long getBillId() {
-        return billId;
-    }
+	@Override
+	public String toString() {
+		return "Bill [billId=" + billId + ", amount=" + amount + ", paidFor=" + paidFor + ", paidBy=" + paidBy + "]";
+	}
 
-    public void setBillId(Long billId) {
-        this.billId = billId;
-    }
-
-    public Double getAmount() {
-        return amount;
-    }
-
-    public void setAmount(Double amount) {
-        this.amount = amount;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public List<Friend> getPaidFor() {
-        return paidFor;
-    }
-
-    public void setPaidFor(List<Friend> paidFor) {
-        this.paidFor = paidFor;
-    }
-
-    public static Double getDefaultExpenseRatio() {
-        return defaultExpenseRatio;
-    }
-
-
-    void settle() {
-        int friendsCount = paidFor.size();
-        Double perFriendAmount = this.amount / friendsCount;
-        for (Friend friend : this.paidFor) {
-            friend.updateAmountToPay(perFriendAmount);
-        }
-    }
 }
